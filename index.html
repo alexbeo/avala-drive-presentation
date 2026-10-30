@@ -100,6 +100,24 @@
   .next { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
   .next div { border: 1px dashed #c8c8c4; border-radius: var(--radius); padding: 20px; font-size: 15px; color: var(--ink-2); }
 
+  /* SEO */
+  .serp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .snippet { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; font-family: Arial, sans-serif; background: var(--paper); }
+  .snippet .q { font: 600 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .snippet .q b { color: var(--ink); letter-spacing: 0; text-transform: none; font-size: 13px; margin-left: 6px; }
+  .snippet .url { font-size: 12px; color: #4d5156; margin-bottom: 4px; overflow-wrap: anywhere; }
+  .snippet .t { font-size: 18px; line-height: 1.3; color: #1a0dab; margin-bottom: 4px; }
+  .snippet .d { font-size: 13px; line-height: 1.5; color: #4d5156; }
+  table.seo { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 15px; }
+  table.seo th, table.seo td { text-align: left; padding: 12px 16px 12px 0; border-top: 1px solid var(--line); vertical-align: top; }
+  table.seo th { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.seo td:first-child { font-weight: 600; white-space: nowrap; }
+  table.seo code, .seo-cols code { font-size: 13px; background: var(--paper-2); padding: 1px 6px; border-radius: 4px; }
+  .seo-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 64px; }
+  .launch { background: var(--paper-2); border-radius: var(--radius); padding: 28px 32px; margin-top: 64px; }
+  .launch ol { margin: 12px 0 0; padding-left: 20px; color: var(--ink-2); }
+  .launch li { padding: 4px 0; }
+
   footer { border-top: 1px solid var(--line); padding: 40px 0 56px; font-size: 13px; color: var(--muted); }
 
   /* Лайтбокс */
@@ -116,6 +134,8 @@
     .price { grid-template-columns: 1fr; }
     .price div { border-right: 0; border-bottom: 1px solid var(--line); }
     .next { grid-template-columns: 1fr 1fr; }
+    .serp, .seo-cols { grid-template-columns: 1fr; }
+    table.seo td:first-child { white-space: normal; }
     .phones { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .phone { border-width: 4px; border-radius: 18px; }
     .top nav { display: none; }
@@ -136,6 +156,7 @@
       <a href="#content">Контент</a>
       <a href="#languages">Языки и устройства</a>
       <a href="#admin">Админка</a>
+      <a href="#seo">SEO</a>
       <a href="#price">Цена</a>
       <a href="#next">Дальше</a>
     </nav>
@@ -446,6 +467,112 @@
   </div>
 </section>
 
+<!-- ЧАСТЬ 3: SEO -->
+<section class="part" id="seo">
+  <div class="wrap">
+    <p class="eyebrow">Часть 3</p>
+    <h2>SEO: клиенты приходят из поиска</h2>
+    <p>Человек, который ищет «аренда авто аэропорт Белград», должен найти Avala, а не агрегатор с комиссией. SEO заложено в сайт с первого дня, его не придётся «докручивать» после запуска.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h3><span class="num">13</span>Одна страница — три языка и три поисковых запроса</h3>
+    <p style="color:var(--ink-2);max-width:760px;margin:0">У каждой страницы есть версия на сербском, русском и английском со своим адресом, заголовком и описанием под формулировку, которую люди действительно вводят в поиск. Ниже — как страница аэропорта Белграда может выглядеть в выдаче (тексты взяты с сайта как есть).</p>
+    <div class="serp">
+      <div class="snippet">
+        <div class="q">Запрос<b>rent a car aerodrom Beograd</b></div>
+        <div class="url">avaladrive.rs › sr › lokacije › aerodrom-beograd</div>
+        <div class="t">Rent a car aerodrom Beograd — Nikola Tesla, 24/7</div>
+        <div class="d">Doček u dolaznoj sali sa tablom sa imenom, 24/7. Pratimo vaš let.</div>
+      </div>
+      <div class="snippet">
+        <div class="q">Запрос<b>аренда авто аэропорт Белград</b></div>
+        <div class="url">avaladrive.rs › ru › lokacii › aeroport-belgrad</div>
+        <div class="t">Аренда авто в аэропорту Белграда — 24/7</div>
+        <div class="d">Встреча в зале прилёта с табличкой, 24/7. Отслеживаем ваш рейс.</div>
+      </div>
+      <div class="snippet">
+        <div class="q">Запрос<b>car hire Belgrade airport</b></div>
+        <div class="url">avaladrive.rs › en › locations › belgrade-airport</div>
+        <div class="t">Car hire Belgrade Airport (BEG) — 24/7 meet &amp; greet</div>
+        <div class="d">Meet &amp; greet in the arrivals hall with a name sign, 24/7. We track your flight.</div>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:16px">Это иллюстрация: какой сниппет покажет поисковик и на каком месте окажется сайт, решает он сам.</p>
+
+    <div class="seo-cols">
+      <div>
+        <h3>Страницы под реальный спрос</h3>
+        <ul class="points">
+          <li><b>5 страниц точек выдачи</b> — аэропорт Белграда, центр Белграда, Нови-Сад, аэропорт Ниша, доставка. Каждая отвечает на запрос «прокат + город».</li>
+          <li><b>13 страниц автомобилей</b> — «аренда Škoda Octavia в Белграде от 26 €/сутки». Если заголовок не задан вручную, цена в нём обновляется сама при смене тарифа.</li>
+          <li><b>6 категорий</b> — эконом, SUV, премиум, минивэны, электро.</li>
+          <li><b>Гиды</b> — права РФ в Сербии, оплата без российских карт, выезд в Черногорию и Боснию, платные дороги. Это информационные запросы, по которым к сайту приходят ещё до решения об аренде.</li>
+          <li><b>FAQ</b> — ответы на вопросы о документах, депозите, страховке и границах.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Удобно для поисковиков</h3>
+        <ul class="points">
+          <li><b>Страницы собираются на сервере</b> — роботы Google и Яндекса сразу получают готовый текст, а не пустую страницу, которую надо дорисовать скриптом.</li>
+          <li><b>Адреса на языке посетителя</b> — <code>/sr/vozni-park/</code>, <code>/ru/avtopark/</code>, <code>/en/fleet/</code>.</li>
+          <li><b>Связка языковых версий (hreflang)</b> — поисковик показывает русскоязычному пользователю русскую страницу, сербу — сербскую.</li>
+          <li><b>Канонические адреса</b> — каталог с датами и фильтрами не плодит дубли, вес собирается на одной странице.</li>
+          <li><b>Карта сайта</b> — 105 адресов, у каждого указаны все языковые версии. Новые машины, точки выдачи и статьи попадают в неё автоматически.</li>
+          <li><b>Служебное закрыто от индекса</b> — бронирование, личный кабинет, поиск брони. Админка работает по закрытому адресу и только после входа.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:64px">Структурированные данные</h3>
+    <p style="color:var(--ink-2);max-width:760px;margin:0">На страницах есть разметка Schema.org: по ней поисковик понимает, что это прокат авто, где точки выдачи, сколько стоит машина. Она может показываться в выдаче, например хлебными крошками или ценой.</p>
+    <table class="seo">
+      <thead><tr><th>Страница</th><th>Что сообщаем поисковику</th></tr></thead>
+      <tbody>
+        <tr><td>Главная</td><td>Компания-прокатчик (<code>AutoRental</code>): контакты, регион работы; вопросы и ответы (<code>FAQPage</code>)</td></tr>
+        <tr><td>Точка выдачи</td><td>Отдельный пункт проката: адрес, координаты на карте, часы работы</td></tr>
+        <tr><td>Автомобиль</td><td>Модель, марка и предложение с ценой за сутки в евро (<code>Product</code> + <code>Car</code> + <code>Offer</code>)</td></tr>
+        <tr><td>Гид</td><td>Статья: автор, дата публикации (<code>Article</code>)</td></tr>
+        <tr><td>FAQ</td><td>Список вопросов и ответов (<code>FAQPage</code>)</td></tr>
+        <tr><td>Все внутренние</td><td>Хлебные крошки — путь до страницы (<code>BreadcrumbList</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="seo-cols">
+      <div>
+        <h3>SEO под контролем менеджера</h3>
+        <ul class="points">
+          <li><b>SEO-заголовок и описание</b> у автомобилей, категорий, точек выдачи, страниц и статей — на каждом из трёх языков.</li>
+          <li><b>Если поле пустое</b>, текст собирается по шаблону: «Аренда {модель} в Белграде от {цена} €/сутки — Avala Drive». Ни одна страница не останется без заголовка.</li>
+          <li><b>Превью для мессенджеров и соцсетей</b> — ссылка в Telegram, WhatsApp или Facebook показывается с заголовком, описанием и картинкой.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Скорость — тоже фактор ранжирования</h3>
+        <ul class="points">
+          <li><b>Лёгкие страницы</b> — около 30 КБ JavaScript.</li>
+          <li><b>Фото в нескольких размерах</b> — телефон скачивает маленькую версию, большой монитор — крупную; картинки ниже первого экрана грузятся по мере прокрутки.</li>
+          <li><b>Свои шрифты</b> без Google Fonts, с предзагрузкой — текст виден сразу.</li>
+          <li><b>Аналитика</b> (GA4, Яндекс Метрика) подключается только после согласия посетителя и не тормозит первую загрузку.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="launch">
+      <h3 style="margin:0">Что нужно сделать при запуске</h3>
+      <ol>
+        <li>Подключить домен и указать его в настройках сервера — от него строятся все ссылки, карта сайта и канонические адреса.</li>
+        <li>Подтвердить сайт в Google Search Console и Яндекс.Вебмастере: коды вставляются в «Настройки сайта» в админке, программист не нужен.</li>
+        <li>Отправить карту сайта <code>/sitemap.xml</code> в обе панели.</li>
+        <li>Заменить демо-тексты (отзывы, адреса, юридические страницы) на настоящие и проверить SEO-заголовки ключевых страниц.</li>
+        <li>Регулярно публиковать гиды — это самый дешёвый источник бесплатного трафика.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <section id="price">
   <div class="wrap">
     <h2>Честная цена «под ключ»</h2>
@@ -460,7 +587,7 @@
     <p style="font-size:14px;color:var(--muted);margin-top:16px">Сутки — это 24 часа с льготным периодом 59 минут: опоздание на полчаса не превращается в лишний день.</p>
 
     <div class="cards">
-      <div class="card"><h3>Находится в поиске</h3><p>Страницы отдаются сервером целиком, есть переводы адресов, hreflang, sitemap, разметка для Google (организация, автомобиль с ценой, FAQ, статьи).</p></div>
+      <div class="card"><h3>Находится в поиске</h3><p>Страницы под каждый город и аэропорт на трёх языках, карта сайта, разметка для поисковиков — подробно в <a href="#seo">разделе SEO</a>.</p></div>
       <div class="card"><h3>Быстро открывается</h3><p>Около 30 КБ JavaScript вместо 150+ КБ у типичных SPA, адаптивные изображения, свои шрифты без внешних сервисов.</p></div>
       <div class="card"><h3>Доступен всем</h3><p>Стандарт WCAG 2.2 AA: контрастность, навигация с клавиатуры, крупные зоны нажатия на телефоне.</p></div>
       <div class="card"><h3>Защищён</h3><p>HTTPS, строгие заголовки безопасности, хранение паролей по Argon2, ограничение попыток входа, защищённые ссылки на бронь.</p></div>
