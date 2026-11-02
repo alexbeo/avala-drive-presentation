@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avala Drive — презентация</title>
-<meta name="description" content="Возможности сайта проката Avala Drive и панели управления для менеджеров.">
+<meta name="description" content="Сайт премиального проката Avala Drive: бронирование, программа лояльности Avala Club, CMS для менеджеров и SEO.">
 <style>
   :root {
     --ink: #0c0d0f;
@@ -14,6 +14,7 @@
     --paper: #ffffff;
     --paper-2: #f5f5f3;
     --accent: #2f4fe0;
+    --ok: #1f7a52;
     --radius: 14px;
     --wrap: 1200px;
     --sans: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -23,12 +24,15 @@
   body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
+  code { font-size: 13px; background: var(--paper-2); padding: 1px 6px; border-radius: 4px; }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  .intro { color: var(--ink-2); max-width: 760px; margin: 0; }
+  .note { font-size: 14px; color: var(--muted); margin-top: 16px; }
 
   /* Шапка */
   .top { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
   .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 24px; }
-  .brand { font-weight: 700; letter-spacing: .28em; font-size: 14px; }
+  .brand { font-weight: 700; letter-spacing: .28em; font-size: 14px; white-space: nowrap; }
   .top nav { display: flex; gap: 22px; font-size: 14px; color: var(--muted); overflow-x: auto; }
   .top nav a { text-decoration: none; white-space: nowrap; }
   .top nav a:hover { color: var(--ink); }
@@ -37,7 +41,7 @@
   .hero { padding: 96px 0 48px; }
   .eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
   h1 { font-size: clamp(40px, 6.4vw, 84px); line-height: 1.02; font-weight: 500; letter-spacing: -.03em; margin: 0 0 24px; }
-  .lead { font-size: clamp(18px, 1.6vw, 21px); color: var(--ink-2); max-width: 720px; margin: 0; }
+  .lead { font-size: clamp(18px, 1.6vw, 21px); color: var(--ink-2); max-width: 760px; margin: 0; }
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 56px; }
   .stat { padding: 24px 24px 0 0; }
   .stat b { display: block; font-size: clamp(28px, 3vw, 40px); font-weight: 500; letter-spacing: -.02em; }
@@ -48,7 +52,7 @@
   .part { background: var(--ink); color: #fff; border: 0; padding: 120px 0; }
   .part .eyebrow { color: #a9aeb5; }
   .part h2 { color: #fff; }
-  .part p { color: #c9ccd1; max-width: 680px; font-size: 19px; margin: 0; }
+  .part p { color: #c9ccd1; max-width: 700px; font-size: 19px; margin: 0; }
   h2 { font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; font-weight: 500; letter-spacing: -.02em; margin: 0 0 20px; }
   h3 { font-size: 22px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 12px; }
   .num { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 10px; }
@@ -65,26 +69,71 @@
 
   /* Скриншоты */
   .shots { display: grid; gap: 28px; }
-  figure { margin: 0; }
+  figure { margin: 0; min-width: 0; }
   .frame { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); box-shadow: 0 1px 2px rgba(12,13,15,.04), 0 12px 40px -16px rgba(12,13,15,.18); cursor: zoom-in; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
   .frame:hover { transform: translateY(-2px); }
   .frame .bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid var(--line); background: #fafafa; }
-  .frame .bar i { width: 9px; height: 9px; border-radius: 50%; background: #dcdcd9; }
+  .frame .bar i { width: 9px; height: 9px; border-radius: 50%; background: #dcdcd9; flex: none; }
   .frame .bar em { margin-left: 12px; font-style: normal; font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  figcaption b { color: var(--ink); }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .phones { display: grid; grid-template-columns: repeat(3, minmax(0, 300px)); gap: 40px; justify-content: center; margin-top: 48px; }
-  .phone { border: 8px solid var(--ink); border-radius: 36px; overflow: hidden; cursor: zoom-in; background: #fff; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .phones { display: grid; grid-template-columns: repeat(4, minmax(0, 250px)); gap: 32px; justify-content: center; margin-top: 48px; }
+  .phone { border: 8px solid var(--ink); border-radius: 34px; overflow: hidden; cursor: zoom-in; background: #fff; }
   .phone img { width: 100%; }
 
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
   .card { background: var(--paper); padding: 28px; }
   .card h3 { font-size: 17px; }
   .card p { font-size: 15px; color: var(--ink-2); margin: 0; }
+  .card .k { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
 
-  .price { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
+  /* Сравнение */
+  .compare-wrap { overflow-x: auto; margin-top: 40px; border: 1px solid var(--line); border-radius: var(--radius); }
+  table.compare { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 820px; }
+  table.compare th, table.compare td { padding: 14px 16px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+  table.compare thead th { border-top: 0; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--paper-2); }
+  table.compare thead th.us { background: var(--ink); color: #fff; }
+  table.compare td.us { background: #f2f4fd; font-weight: 600; }
+  table.compare td:first-child { font-weight: 600; width: 22%; }
+  .y { color: var(--ok); font-weight: 700; }
+  .n { color: #a33; font-weight: 700; }
+  .p { color: #9a6a12; font-weight: 700; }
+
+  /* Клуб */
+  .missions { display: grid; grid-template-columns: 1fr; margin-top: 20px; font-size: 14px; }
+  .missions div { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); color: var(--ink-2); }
+  .missions span:last-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  .legal { border-left: 3px solid var(--accent); background: var(--paper-2); padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0; margin-top: 40px; font-size: 15px; color: var(--ink-2); }
+  .legal b { color: var(--ink); }
+
+  /* CMS */
+  .cms-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; margin-top: 40px; }
+  .cms-list div { padding: 18px 0; border-top: 1px solid var(--line); }
+  .cms-list h4 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+  .cms-list p { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+  /* SEO */
+  .serp { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+  .snippet { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; font-family: Arial, sans-serif; background: var(--paper); }
+  .snippet .q { font: 600 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .snippet .q b { color: var(--ink); letter-spacing: 0; text-transform: none; font-size: 13px; margin-left: 6px; }
+  .snippet .url { font-size: 12px; color: #4d5156; margin-bottom: 4px; overflow-wrap: anywhere; }
+  .snippet .t { font-size: 18px; line-height: 1.3; color: #1a0dab; margin-bottom: 4px; }
+  .snippet .d { font-size: 13px; line-height: 1.5; color: #4d5156; }
+  table.seo { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 15px; }
+  table.seo th, table.seo td { text-align: left; padding: 12px 16px 12px 0; border-top: 1px solid var(--line); vertical-align: top; }
+  table.seo th { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  table.seo td:first-child { font-weight: 600; white-space: nowrap; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 64px; }
+  .launch { background: var(--paper-2); border-radius: var(--radius); padding: 28px 32px; margin-top: 64px; }
+  .launch ol { margin: 12px 0 0; padding-left: 20px; color: var(--ink-2); }
+  .launch li { padding: 4px 0; }
+
+  .price { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
   .price div { padding: 24px 20px; border-right: 1px solid var(--line); }
   .price div:last-child { border-right: 0; background: var(--ink); color: #fff; }
   .price small { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
@@ -100,27 +149,8 @@
   .next { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
   .next div { border: 1px dashed #c8c8c4; border-radius: var(--radius); padding: 20px; font-size: 15px; color: var(--ink-2); }
 
-  /* SEO */
-  .serp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-  .snippet { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; font-family: Arial, sans-serif; background: var(--paper); }
-  .snippet .q { font: 600 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .snippet .q b { color: var(--ink); letter-spacing: 0; text-transform: none; font-size: 13px; margin-left: 6px; }
-  .snippet .url { font-size: 12px; color: #4d5156; margin-bottom: 4px; overflow-wrap: anywhere; }
-  .snippet .t { font-size: 18px; line-height: 1.3; color: #1a0dab; margin-bottom: 4px; }
-  .snippet .d { font-size: 13px; line-height: 1.5; color: #4d5156; }
-  table.seo { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 15px; }
-  table.seo th, table.seo td { text-align: left; padding: 12px 16px 12px 0; border-top: 1px solid var(--line); vertical-align: top; }
-  table.seo th { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  table.seo td:first-child { font-weight: 600; white-space: nowrap; }
-  table.seo code, .seo-cols code { font-size: 13px; background: var(--paper-2); padding: 1px 6px; border-radius: 4px; }
-  .seo-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 64px; }
-  .launch { background: var(--paper-2); border-radius: var(--radius); padding: 28px 32px; margin-top: 64px; }
-  .launch ol { margin: 12px 0 0; padding-left: 20px; color: var(--ink-2); }
-  .launch li { padding: 4px 0; }
-
   footer { border-top: 1px solid var(--line); padding: 40px 0 56px; font-size: 13px; color: var(--muted); }
 
-  /* Лайтбокс */
   .lightbox { position: fixed; inset: 0; background: rgba(12,13,15,.92); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 50; cursor: zoom-out; }
   .lightbox.open { display: flex; }
   .lightbox img { max-height: 100%; max-width: 100%; border-radius: 8px; }
@@ -129,17 +159,16 @@
     .feature, .feature.flip { grid-template-columns: 1fr; gap: 32px; }
     .feature.flip .text { order: 0; }
     .feature .text { position: static; }
-    .grid-2, .grid-3, .cards { grid-template-columns: 1fr; }
-    .stats { grid-template-columns: 1fr 1fr; }
+    .grid-2, .grid-3, .cards, .serp, .cols, .cms-list, .missions { grid-template-columns: 1fr; }
+    .grid-4, .stats, .next { grid-template-columns: 1fr 1fr; }
     .price { grid-template-columns: 1fr; }
     .price div { border-right: 0; border-bottom: 1px solid var(--line); }
-    .next { grid-template-columns: 1fr 1fr; }
-    .serp, .seo-cols { grid-template-columns: 1fr; }
+    .phones { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .phone { border-width: 5px; border-radius: 20px; }
     table.seo td:first-child { white-space: normal; }
-    .phones { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .phone { border-width: 4px; border-radius: 18px; }
     .top nav { display: none; }
     section { padding: 64px 0; }
+    .part { padding: 88px 0; }
     .wrap { padding: 0 16px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .frame { transition: none; } }
@@ -151,13 +180,12 @@
   <div class="wrap">
     <div class="brand">AVALA&nbsp;DRIVE</div>
     <nav>
+      <a href="#why">Отличия</a>
       <a href="#site">Сайт</a>
-      <a href="#booking">Бронирование</a>
-      <a href="#content">Контент</a>
-      <a href="#languages">Языки и устройства</a>
-      <a href="#admin">Админка</a>
+      <a href="#club">Avala Club</a>
+      <a href="#cms">CMS</a>
       <a href="#seo">SEO</a>
-      <a href="#price">Цена</a>
+      <a href="#tech">Качество</a>
       <a href="#next">Дальше</a>
     </nav>
   </div>
@@ -165,220 +193,251 @@
 
 <div class="hero">
   <div class="wrap">
-    <p class="eyebrow">Презентация продукта · октябрь 2026</p>
+    <p class="eyebrow">Презентация продукта · ноябрь 2026</p>
     <h1>Avala Drive —<br>премиальный прокат авто в&nbsp;Сербии</h1>
-    <p class="lead">Сайт, на котором клиент за 2–3 минуты находит машину, видит честную итоговую цену и оставляет бронь без регистрации и предоплаты. Менеджер в админке подтверждает заявку, назначает конкретный автомобиль и ведёт выдачу и возврат.</p>
+    <p class="lead">Сайт, на котором клиент за пару минут находит машину, видит честную итоговую цену и бронирует без предоплаты. Клуб лояльности с баллами, статусами и «Паспортом Сербии» возвращает клиентов снова. Менеджеры управляют всем — от автопарка до текстов и промокодов — в собственной CMS без программиста.</p>
     <div class="stats">
-      <div class="stat"><b>3 языка</b><span>сербский, русский, английский</span></div>
+      <div class="stat"><b>4 языка</b><span>сербский, русский, английский, немецкий</span></div>
       <div class="stat"><b>0 €</b><span>предоплата — оплата при получении</span></div>
-      <div class="stat"><b>5 точек</b><span>аэропорты Белграда и Ниша, центр, Нови-Сад, доставка</span></div>
-      <div class="stat"><b>~2 мин</b><span>от поиска до отправленной брони</span></div>
+      <div class="stat"><b>5% баллами</b><span>с каждой аренды, статусы и 11 миссий</span></div>
+      <div class="stat"><b>148 страниц</b><span>в карте сайта для Google и Яндекса</span></div>
     </div>
   </div>
   <div class="wrap" style="margin-top:56px">
     <figure>
-      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/</em></div><img src="img/01-home.jpg" alt="Главная страница: крупный заголовок, фото автомобиля и форма поиска" loading="eager"></div>
-      <figcaption>Главная страница. Форма поиска — место, даты и время получения и возврата — на первом экране.</figcaption>
+      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/</em></div><img src="img/home.jpg" alt="Главная страница с крупным заголовком, фото автомобиля и формой поиска" loading="eager"></div>
+      <figcaption>Главная страница: поиск по месту, датам и времени — на первом экране.</figcaption>
     </figure>
   </div>
 </div>
+
+<!-- СИЛЬНЫЕ СТОРОНЫ -->
+<section id="why">
+  <div class="wrap">
+    <p class="eyebrow">Сильные стороны</p>
+    <h2>Почему клиент выберет Avala</h2>
+    <p class="intro">Рынок проката в Сербии делят международные сети со стойками в аэропорту, агрегаторы, местные прокаты и частники из Telegram-чатов. У каждого есть слабое место — Avala закрывает их все в одном сервисе.</p>
+    <div class="cards">
+      <div class="card"><span class="k">Цена</span><h3>Честная цена «под ключ»</h3><p>Итог со страховкой и сборами виден до брони и фиксируется в ней. Без доплат на стойке, перечёркнутых цен и таймеров «осталось 5 минут».</p></div>
+      <div class="card"><span class="k">Без барьеров</span><h3>Бронь за 2 минуты без предоплаты</h3><p>Регистрация не нужна, онлайн-оплата не нужна: наличные EUR/RSD или карта при выдаче. Важно для россиян — их карты в Сербии не работают.</p></div>
+      <div class="card"><span class="k">Аудитории</span><h3>Говорит на языке клиента</h3><p>Сербский, русский, английский и немецкий — для местных, релокантов, туристов и диаспоры из Германии, Австрии и Швейцарии. Связь — Viber, WhatsApp и Telegram.</p></div>
+      <div class="card"><span class="k">Удержание</span><h3>Клуб, которого нет у местных</h3><p>Баллы, статусы с бесплатными опциями, приглашения друзей и миссии «Паспорт Сербии». Публичных программ лояльности у сербских прокатчиков мы не нашли.</p></div>
+      <div class="card"><span class="k">Трафик</span><h3>Клиенты из поиска, а не от посредников</h3><p>Страницы под каждый аэропорт и город на четырёх языках, гиды и разметка для поисковиков. Меньше зависимости от агрегаторов с их комиссией.</p></div>
+      <div class="card"><span class="k">Управление</span><h3>CMS без программиста</h3><p>Автопарк, цены, сезоны, тексты, SEO, промокоды, миссии и правила клуба меняет менеджер в админке. Всё на четырёх языках.</p></div>
+    </div>
+
+    <h3 style="margin-top:72px">Сравнение с типами конкурентов</h3>
+    <p class="intro">По исследованию рынка, проведённому в октябре 2026 года (сайты, цены, отзывы, каналы связи игроков Белграда).</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th class="us">Avala Drive</th><th>Международные сети</th><th>Агрегаторы</th><th>Местные прокаты</th><th>Частники из Telegram</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Премиум-модели с названием</td><td class="us"><span class="y">Да</span> — BMW, Mercedes, Tesla и др.</td><td><span class="y">Да</span>, но заметно дороже</td><td><span class="p">Зависит</span> от поставщика</td><td><span class="p">Редко</span> — чаще эконом и «премиум без модели»</td><td><span class="n">Нет</span></td></tr>
+          <tr><td>Итоговая цена до брони</td><td class="us"><span class="y">Да</span>, со страховкой и сборами</td><td><span class="y">Да</span></td><td><span class="y">Да</span></td><td><span class="p">Часто</span> «от 15 €»</td><td><span class="n">Нет</span></td></tr>
+          <tr><td>Русский и немецкий</td><td class="us"><span class="y">Оба</span> + сербский и английский</td><td><span class="n">Без русского</span></td><td><span class="p">Частично</span></td><td><span class="p">Частично</span></td><td><span class="p">Только русский</span></td></tr>
+          <tr><td>Viber, WhatsApp и Telegram</td><td class="us"><span class="y">Все три</span></td><td><span class="n">Нет</span></td><td><span class="p">Редко</span></td><td><span class="p">1–2</span> из трёх</td><td><span class="p">Только Telegram</span></td></tr>
+          <tr><td>Программа лояльности</td><td class="us"><span class="y">Avala Club</span>: баллы, статусы, миссии</td><td><span class="p">Глобальные</span>, Сербия участвует не всегда</td><td><span class="p">Редко</span></td><td><span class="n">Не найдено</span>, только разовые скидки</td><td><span class="n">Нет</span></td></tr>
+          <tr><td>Договор напрямую с парком</td><td class="us"><span class="y">Да</span></td><td><span class="y">Да</span></td><td><span class="n">Нет</span> — посредник</td><td><span class="y">Да</span></td><td><span class="y">Да</span>, без гарантий</td></tr>
+          <tr><td>Контент для приезжих</td><td class="us"><span class="y">Гиды</span>: права, оплата, границы</td><td><span class="n">Шаблонный сайт</span></td><td><span class="p">SEO-страницы</span></td><td><span class="p">Блог у некоторых</span></td><td><span class="n">Нет сайта</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">«Не найдено» — публичных программ на сайтах на дату исследования не обнаружено. Названия конкретных игроков и источники — в маркетинг-плане.</p>
+  </div>
+</section>
 
 <!-- ЧАСТЬ 1: САЙТ -->
 <section class="part" id="site">
   <div class="wrap">
     <p class="eyebrow">Часть 1</p>
     <h2>Сайт для клиентов</h2>
-    <p>Путь клиента: поиск, выбор машины, бронирование, подтверждение. Всё работает без регистрации и онлайн-оплаты: карты российских банков в Сербии не принимаются, поэтому расчёт происходит при выдаче.</p>
+    <p>Путь клиента: поиск, выбор машины, бронирование, подтверждение. Каждый шаг рассчитан на то, чтобы человек не ушёл: цена видна сразу, полей минимум, связь с живым менеджером — в один клик.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap feature">
     <div class="text">
-      <h3><span class="num">01</span>Главная и поиск</h3>
-      <p>С первого экрана видно, чем Avala отличается от конкурентов: цена со страховкой без сюрпризов на стойке, новые машины, живая поддержка на языке клиента.</p>
-      <ul class="points">
-        <li><b>Поиск на первом экране</b> — точка выдачи, даты и время. Можно вернуть машину в другом городе.</li>
-        <li><b>Ключевые обещания цифрами</b> — 0 € предоплата, бесплатная отмена за 48 часов, встреча в аэропорту 24/7.</li>
-        <li><b>Подборка автопарка, отзывы и гиды</b> ниже по странице.</li>
-      </ul>
-    </div>
-    <figure>
-      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/</em></div><img src="img/02-home-fleet.jpg" alt="Блок преимуществ на главной: 0 € предоплата, 48 часов на отмену, 24/7 в аэропорту" loading="lazy"></div>
-      <figcaption>Блок «Почему Avala» — обещания сервиса.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section>
-  <div class="wrap feature flip">
-    <div class="text">
-      <h3><span class="num">02</span>Каталог автопарка</h3>
+      <h3><span class="num">01</span>Каталог автопарка</h3>
       <p>13 моделей в шести категориях: эконом, компакт, кроссоверы, премиум, минивэны и электромобили.</p>
       <ul class="points">
-        <li><b>Цена за весь период</b> — после выбора дат на карточке сразу итоговая сумма, а не «от X €».</li>
-        <li><b>Фильтры без перезагрузки</b> — коробка, топливо, число мест, сортировка. У каждого состояния фильтра свой адрес, его можно отправить в мессенджер.</li>
-        <li><b>Учёт занятости</b> — показываются только свободные на эти даты машины, с подсказкой «осталось 2 машины».</li>
+        <li><b>Цена за весь период</b> — после выбора дат на карточке итоговая сумма, а не «от X €».</li>
+        <li><b>Фильтры без перезагрузки</b> — коробка, топливо, места, сортировка. У каждого состояния свой адрес, его можно переслать.</li>
+        <li><b>Только свободные машины</b> на выбранные даты, с подсказкой «осталось 2 машины».</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/</em></div><img src="img/catalog.jpg" alt="Каталог с датами, категориями и фильтрами" loading="lazy"></div>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/</em></div><img src="img/home-why.jpg" alt="Блок обещаний на главной: 0 € предоплата, 48 часов на отмену, 24/7" loading="lazy"></div>
+        <figcaption>Обещания сервиса на главной: 0 € предоплата, бесплатная отмена за 48 часов, встреча в аэропорту 24/7.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature flip">
+    <div class="text">
+      <h3><span class="num">02</span>Карточка автомобиля</h3>
+      <p>Галерея, характеристики, комплектация, требования к водителю и депозит — всё для решения на одной странице.</p>
+      <ul class="points">
+        <li><b>Калькулятор</b> — меняете даты или место, итог пересчитывается сразу, с разбивкой.</li>
+        <li><b>«Или аналог»</b> — честно указано, что гарантируется класс автомобиля.</li>
+        <li><b>На телефоне</b> цена и кнопка «Продолжить» закреплены внизу экрана.</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/avto/skoda-octavia/</em></div><img src="img/car.jpg" alt="Карточка Škoda Octavia" loading="lazy"></div>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/avto/skoda-octavia/</em></div><img src="img/car-calc.jpg" alt="Характеристики и калькулятор цены" loading="lazy"></div>
+        <figcaption>5 суток × 38 € + сбор за аэропорт = 205 €.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature">
+    <div class="text">
+      <h3><span class="num">03</span>Бронирование в три шага</h3>
+      <p>Одна страница: защита, опции, водитель. Справа — живой итог.</p>
+      <ul class="points">
+        <li><b>Пакеты защиты</b> — базовый (в цене), стандарт и полная защита без франшизы. Видны франшиза и депозит.</li>
+        <li><b>Опции</b> — детское кресло, бустер, второй водитель, зелёная карта для выезда за границу, Wi-Fi, цепи.</li>
+        <li><b>Скидки</b> — промокод или оплата баллами клуба, итог пересчитывается сразу (подробнее — в разделе Avala Club).</li>
+        <li><b>Защита от спама</b> — ловушка для ботов и ограничение частоты.</li>
       </ul>
     </div>
     <figure>
-      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/</em></div><img src="img/03-catalog.jpg" alt="Каталог: форма дат, вкладки категорий, фильтры и карточки машин" loading="lazy"></div>
-      <figcaption>Каталог с выбранными датами (12–17 ноября).</figcaption>
+      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/skoda-octavia/</em></div><img src="img/checkout.jpg" alt="Страница бронирования: выбор пакета защиты" loading="lazy"></div>
     </figure>
   </div>
 </section>
 
 <section>
-  <div class="wrap feature">
-    <div class="text">
-      <h3><span class="num">03</span>Карточка автомобиля</h3>
-      <p>Всё, что нужно для решения: галерея, характеристики, комплектация, требования к водителю, размер депозита.</p>
-      <ul class="points">
-        <li><b>Калькулятор цены</b> — меняете даты или точку выдачи, итог пересчитывается сразу. Видна разбивка: аренда, сбор за аэропорт.</li>
-        <li><b>«Или аналог»</b> — честно указано, что гарантируется класс автомобиля.</li>
-        <li><b>На телефоне</b> итог и кнопка «Продолжить» закреплены внизу экрана.</li>
-      </ul>
-    </div>
-    <div class="shots">
-      <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/avto/skoda-octavia/</em></div><img src="img/04-car.jpg" alt="Карточка Škoda Octavia: название, цена от 26 € в сутки, большое фото" loading="lazy"></div>
-      </figure>
-      <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/avto/skoda-octavia/</em></div><img src="img/05-car-specs.jpg" alt="Характеристики автомобиля и калькулятор с итогом 205 €" loading="lazy"></div>
-        <figcaption>Характеристики и калькулятор: 5 суток × 38 € + сбор за аэропорт = 205 €.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section id="booking">
   <div class="wrap feature flip">
     <div class="text">
-      <h3><span class="num">04</span>Бронирование в три шага</h3>
-      <p>Одна страница, три шага: защита, опции, водитель. Справа — живой итог, который пересчитывается при каждом выборе.</p>
+      <h3><span class="num">04</span>Страница брони</h3>
+      <p>Код брони, письмо на языке клиента и страница брони по защищённой ссылке.</p>
       <ul class="points">
-        <li><b>Пакеты защиты</b> — базовый (включён в цену), стандарт и полная защита без франшизы. Для каждого видны франшиза и депозит.</li>
-        <li><b>Доп. опции</b> — детское кресло, бустер, второй водитель, зелёная карта для выезда за границу, Wi-Fi, цепи. У посуточных опций есть потолок цены.</li>
-        <li><b>Данные водителя</b> — имя, email, телефон, номер рейса. Если рейс задержат, менеджер подождёт.</li>
-        <li><b>Защита от спама</b> — скрытая ловушка для ботов и ограничение частоты отправки.</li>
+        <li><b>Статус и разбивка цены</b>, сумма к оплате при получении, депозит.</li>
+        <li><b>Сколько баллов начислено</b> за поездку — для участников клуба.</li>
+        <li><b>Добавить в календарь</b> (.ics), связь через WhatsApp, Viber, Telegram.</li>
+        <li><b>Самостоятельная отмена</b>, если до выдачи больше 48 часов; поиск брони по коду и email.</li>
       </ul>
     </div>
     <div class="shots">
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/skoda-octavia/</em></div><img src="img/06-checkout.jpg" alt="Шаг 1 бронирования: выбор пакета защиты" loading="lazy"></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/r/AV-EMFM78/</em></div><img src="img/manage.jpg" alt="Страница брони с начисленными баллами" loading="lazy"></div>
+        <figcaption>Завершённая аренда: «За эту аренду вы получили 534 балла».</figcaption>
       </figure>
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/skoda-octavia/</em></div><img src="img/07-checkout-2.jpg" alt="Шаги 2 и 3: доп. опции и данные водителя, справа итог 205 €" loading="lazy"></div>
-        <figcaption>Опции, данные водителя и кнопка «Подтвердить бронирование».</figcaption>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/najti/</em></div><img src="img/find.jpg" alt="Поиск брони по коду и email" loading="lazy"></div>
       </figure>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="wrap feature">
-    <div class="text">
-      <h3><span class="num">05</span>Подтверждение и управление бронью</h3>
-      <p>После отправки клиент получает код брони (например, AV-QTB4DB), письмо на своём языке и страницу брони по защищённой ссылке.</p>
-      <ul class="points">
-        <li><b>Статус и полная разбивка</b> цены, сумма к оплате при получении, размер депозита.</li>
-        <li><b>«Что дальше»</b> — три понятных шага: звонок менеджера, документы, оплата.</li>
-        <li><b>Добавить в календарь</b> — файл .ics с выдачей и возвратом.</li>
-        <li><b>Связь в один клик</b> — WhatsApp, Viber, Telegram.</li>
-        <li><b>Самостоятельная отмена</b>, если до выдачи больше 48 часов.</li>
-      </ul>
-    </div>
-    <div class="shots">
-      <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/r/AV-QTB4DB/</em></div><img src="img/08-manage.jpg" alt="Страница брони: статус «Подтверждено», разбивка цены 271 €, кнопки мессенджеров" loading="lazy"></div>
-      </figure>
-      <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/najti/</em></div><img src="img/09-find.jpg" alt="Форма поиска брони по номеру и email" loading="lazy"></div>
-        <figcaption>Потеряли письмо — бронь находится по коду и email.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section id="content">
   <div class="wrap">
-    <h3><span class="num">06</span>Контент, который приводит клиентов из поиска</h3>
-    <p style="color:var(--ink-2);max-width:760px;margin:0">Отдельные страницы под каждую точку выдачи и полезные гиды отвечают на типичные запросы в Google и Яндексе: «аренда авто Белград аэропорт», «rent a car aerodrom Beograd», «car hire Belgrade airport».</p>
+    <h3><span class="num">05</span>Контент, который приводит и убеждает</h3>
+    <p class="intro">Страницы точек выдачи, гиды и ответы на частые вопросы снимают сомнения ещё до брони и приводят клиентов из поиска.</p>
     <div class="grid-3" style="margin-top:40px">
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/lokacii/aeroport-belgrad/</em></div><img src="img/10-location.jpg" alt="Страница локации Аэропорт Белград" loading="lazy"></div>
-        <figcaption><b>Локации.</b> Как найти менеджера, часы работы, сбор за выдачу, форма поиска.</figcaption>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/lokacii/aeroport-belgrad/</em></div><img src="img/location.jpg" alt="Страница Аэропорт Белград" loading="lazy"></div>
+        <figcaption><b>Локации.</b> 5 точек: аэропорты Белграда и Ниша, центр, Нови-Сад, доставка.</figcaption>
       </figure>
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/gidy/…</em></div><img src="img/11-guide.jpg" alt="Гид: аренда авто в Сербии для россиян" loading="lazy"></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/gidy/…</em></div><img src="img/guide.jpg" alt="Гид для россиян" loading="lazy"></div>
         <figcaption><b>Гиды.</b> Права РФ в Сербии, оплата, выезд в Черногорию и Боснию, платные дороги.</figcaption>
       </figure>
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/voprosy/</em></div><img src="img/12-faq.jpg" alt="Частые вопросы по темам" loading="lazy"></div>
-        <figcaption><b>FAQ.</b> Вопросы по темам и быстрые кнопки мессенджеров.</figcaption>
-      </figure>
-    </div>
-    <div class="feature" style="margin-top:72px">
-      <div class="text">
-        <h3><span class="num">07</span>Личный кабинет — по желанию</h3>
-        <p>Регистрация не обязательна. Постоянный клиент может завести аккаунт, чтобы бронировать быстрее, видеть историю поездок и отменять бронь в пару кликов. Есть восстановление пароля по email.</p>
-      </div>
-      <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/kabinet/vhod/</em></div><img src="img/13-login.jpg" alt="Страница входа в личный кабинет" loading="lazy"></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/ru/voprosy/</em></div><img src="img/faq.jpg" alt="Частые вопросы" loading="lazy"></div>
+        <figcaption><b>FAQ.</b> Документы, депозит, страховка, границы.</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<section id="languages">
+<section>
   <div class="wrap">
-    <h3><span class="num">08</span>Три языка, тёмная тема, мобильная версия</h3>
-    <p style="color:var(--ink-2);max-width:760px;margin:0">Сайт полностью переведён, включая адреса страниц: <code>/sr/vozni-park/</code>, <code>/ru/avtopark/</code>, <code>/en/fleet/</code>. Посетитель попадает на свой язык автоматически по настройкам браузера, письма приходят на языке брони.</p>
-    <div class="grid-2" style="margin-top:40px">
+    <h3><span class="num">06</span>Четыре языка, тёмная тема, телефон</h3>
+    <p class="intro">Сайт полностью переведён, включая адреса страниц: <code>/sr/vozni-park/</code>, <code>/ru/avtopark/</code>, <code>/en/fleet/</code>, <code>/de/…</code>. Язык выбирается автоматически по браузеру, письма приходят на языке брони. Немецкий — для сербской диаспоры: около 700 тысяч сербов живут в Германии.</p>
+    <div class="grid-3" style="margin-top:40px">
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/en/</em></div><img src="img/19-en-home.jpg" alt="Главная на английском: Serbia, at your pace" loading="lazy"></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/de/</em></div><img src="img/de-home.jpg" alt="Главная на немецком" loading="lazy"></div>
+        <figcaption>Deutsch</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/en/</em></div><img src="img/en-home.jpg" alt="Главная на английском" loading="lazy"></div>
         <figcaption>English</figcaption>
       </figure>
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/sr/</em></div><img src="img/20-sr-home.jpg" alt="Главная на сербском: Srbija, vašim tempom" loading="lazy"></div>
-        <figcaption>Srpski (латиница)</figcaption>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/sr/</em></div><img src="img/sr-home.jpg" alt="Главная на сербском" loading="lazy"></div>
+        <figcaption>Srpski</figcaption>
       </figure>
     </div>
-    <figure style="margin-top:28px">
-      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/</em></div><img src="img/15-dark-catalog.jpg" alt="Каталог в тёмной теме" loading="lazy"></div>
-      <figcaption>Тёмная тема включается автоматически по настройкам устройства или переключателем в шапке.</figcaption>
-    </figure>
+    <div class="grid-2" style="margin-top:28px">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/avtopark/</em></div><img src="img/dark-catalog.jpg" alt="Каталог в тёмной теме" loading="lazy"></div>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/klub/</em></div><img src="img/dark-club.jpg" alt="Страница клуба в тёмной теме" loading="lazy"></div>
+      </figure>
+    </div>
+    <p class="note">Тёмная тема включается по настройкам устройства или переключателем в шапке.</p>
     <div class="phones">
-      <figure><div class="phone"><img src="img/16-m-home.jpg" alt="Главная на телефоне" loading="lazy"></div><figcaption>Поиск на телефоне</figcaption></figure>
-      <figure><div class="phone"><img src="img/17-m-car.jpg" alt="Карточка авто на телефоне с закреплённой панелью цены" loading="lazy"></div><figcaption>Цена и кнопка всегда внизу</figcaption></figure>
-      <figure><div class="phone"><img src="img/18-m-checkout.jpg" alt="Выбор защиты и опций на телефоне" loading="lazy"></div><figcaption>Бронирование одной рукой</figcaption></figure>
+      <figure><div class="phone"><img src="img/m-home.jpg" alt="Главная на телефоне" loading="lazy"></div><figcaption>Поиск</figcaption></figure>
+      <figure><div class="phone"><img src="img/m-car.jpg" alt="Карточка авто на телефоне" loading="lazy"></div><figcaption>Цена всегда внизу</figcaption></figure>
+      <figure><div class="phone"><img src="img/m-club.jpg" alt="Страница клуба на телефоне" loading="lazy"></div><figcaption>Avala Club</figcaption></figure>
+      <figure><div class="phone"><img src="img/m-cabinet.jpg" alt="Карточка участника в кабинете на телефоне" loading="lazy"></div><figcaption>Баланс и статус</figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- ЧАСТЬ 2: АДМИНКА -->
-<section class="part" id="admin">
+<!-- ЧАСТЬ 2: КЛУБ -->
+<section class="part" id="club">
   <div class="wrap">
-    <p class="eyebrow">Часть 2</p>
-    <h2>Панель управления для менеджеров</h2>
-    <p>Работа с заявками, автопарком, ценами и контентом сайта в одном месте. Свою CMS писать не пришлось: админка построена на Django Admin с современной темой Unfold и доступна по закрытому адресу.</p>
+    <p class="eyebrow">Часть 2 · Лояльность и геймификация</p>
+    <h2>Avala Club</h2>
+    <p>Привлечь нового клиента в прокате стоит дорого, вернуть старого — дёшево. Avala Club даёт клиенту причину бронировать снова и звать друзей: баллы с каждой аренды, статусы с реальными привилегиями, миссии «Паспорт Сербии». Вступление бесплатное.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap feature">
     <div class="text">
-      <h3><span class="num">09</span>Дашборд</h3>
-      <p>Утро менеджера начинается с одного экрана.</p>
+      <h3><span class="num">07</span>Как это работает</h3>
+      <p>Три шага, понятные с первого взгляда: бронируйте в аккаунте, путешествуйте, платите баллами.</p>
       <ul class="points">
-        <li><b>Новые заявки</b>, ожидающие подтверждения.</li>
-        <li><b>Выдачи и возвраты</b> на сегодня и завтра.</li>
-        <li><b>Загрузка автопарка</b> и <b>выручка за месяц</b>.</li>
+        <li><b>5 баллов за каждый 1 €</b> аренды — это около 5% стоимости. 100 баллов = 1 €.</li>
+        <li><b>Начисление автоматически</b>, когда менеджер завершает аренду.</li>
+        <li><b>Оплата баллами</b> — от 500 баллов (5 €), до половины стоимости аренды.</li>
+        <li><b>Гостевая бронь</b> — её можно позже добавить в аккаунт и получить баллы.</li>
+        <li><b>Длинные аренды тоже участвуют</b> — а в программе одной из крупнейших международных сетей аренды дольше 27 дней не засчитываются. Важно для диаспоры, которая приезжает на всё лето.</li>
       </ul>
-      <p style="font-size:14px;color:var(--muted);margin-top:16px">На скриншоте — демо-база с одной бронью на ноябрь, поэтому списки на сегодня пусты.</p>
     </div>
     <figure>
-      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/</em></div><img src="img/21-admin-dash.jpg" alt="Дашборд админки: новые заявки, выдачи, загрузка, выручка" loading="lazy"></div>
+      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/klub/</em></div><img src="img/club.jpg" alt="Страница Avala Club: 5 € баллами с каждых 100 € аренды" loading="lazy"></div>
+      <figcaption>Страница клуба — открыта для поисковиков и есть в меню на всех языках.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h3><span class="num">08</span>Статусы с реальными привилегиями</h3>
+    <p class="intro">Статус считается за скользящие 12 месяцев — по числу аренд <em>или</em> дней, что наступит раньше. Достигнутый статус сохраняется год. Месяц аренды летом — и клиент сразу получает Gold.</p>
+    <figure style="margin-top:40px">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/klub/</em></div><img src="img/club-tiers.jpg" alt="Блок статусов на странице клуба" loading="lazy"></div>
+      <figcaption>Статусы на сайте. Бесплатные опции статуса видны в разбивке цены отдельной строкой.</figcaption>
     </figure>
   </div>
 </section>
@@ -386,31 +445,160 @@
 <section>
   <div class="wrap feature flip">
     <div class="text">
-      <h3><span class="num">10</span>Бронирования</h3>
-      <p>Список заявок с поиском, фильтрами по статусу и датам, экспортом в CSV.</p>
+      <h3><span class="num">09</span>Геймификация: «Паспорт Сербии»</h3>
+      <p>Паспорт путешественника со штампами. Каждая миссия — бейдж и фиксированная награда баллами. Засчитывается автоматически по данным брони, без отслеживания геолокации.</p>
+      <div class="missions">
+        <div><span>Первый штамп — первая аренда</span><span>200</span></div>
+        <div><span>Три города — выдача в 3 городах</span><span>500</span></div>
+        <div><span>В одну сторону — возврат в другом городе</span><span>200</span></div>
+        <div><span>Большое путешествие — от 7 дней</span><span>300</span></div>
+        <div><span>Ранняя пташка — бронь за 30+ дней</span><span>200</span></div>
+        <div><span>Зима на Копаонике</span><span>300</span></div>
+        <div><span>Лето в Сербии</span><span>300</span></div>
+        <div><span>Зелёная дорога — гибрид или электро</span><span>300</span></div>
+        <div><span>За границу — с зелёной картой</span><span>200</span></div>
+        <div><span>Чистый возврат ×3</span><span>500</span></div>
+        <div><span>Исследователь Сербии — 6 штампов</span><span>1 000</span></div>
+      </div>
+      <p class="note">Миссии мягко подталкивают к выгодному для бизнеса поведению: раннему бронированию, длинным арендам, зимнему сезону, бережному обращению с машиной.</p>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/klub/</em></div><img src="img/club-passport.jpg" alt="Миссии Паспорт Сербии на странице клуба" loading="lazy"></div>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/kabinet/</em></div><img src="img/cabinet-top.jpg" alt="Кабинет участника: статус Silver, 3580 баллов, паспорт с 5 из 11 штампов" loading="lazy"></div>
+        <figcaption>Кабинет участника: статус, баланс в баллах и евро, прогресс до следующего статуса, собранные штампы.</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="legal"><b>Только честные механики.</b> По сербскому закону об азартных играх любой розыгрыш с покупкой требует разрешения регулятора и сбора с призового фонда. Поэтому в клубе нет колеса фортуны, скретч-карт и лотерей: все награды фиксированы и известны заранее. Скидки показываются строкой от реальной цены, без искусственных «старых» цен. Согласие на рассылки — отдельная галочка, не отмеченная по умолчанию. Правила программы — отдельная страница, текст на проверке у юриста.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature">
+    <div class="text">
+      <h3><span class="num">10</span>Баллы, промокоды и приглашения</h3>
+      <ul class="points">
+        <li><b>Оплата баллами при бронировании</b> — одна галочка, итог пересчитывается мгновенно. Гостю подсказка: «Войдите и получите около N баллов за эту аренду».</li>
+        <li><b>Промокоды</b> — процент с потолком или фиксированная сумма; окно действия, минимум дней, только первая аренда, лимиты использований, категории авто. Примеры кампаний: <code>WELCOME10</code> (−10% на первую аренду), <code>KOPAONIK</code> (зимний сезон), <code>DIJASPORA</code> (−8% от 7 дней).</li>
+        <li><b>Пригласи друга</b> — личная ссылка с кнопками WhatsApp, Viber, Telegram. Друг получает приветственную скидку, после его первой аренды от 3 дней оба получают по 15 € баллами.</li>
+        <li><b>Защита от злоупотреблений</b> — один бонус на телефон и email, нельзя пригласить себя, не больше 10 наград в год, баллы за приглашение становятся доступны через 14 дней.</li>
+        <li><b>Отмена брони</b> — списанные баллы возвращаются автоматически.</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/bronirovanie/skoda-octavia/</em></div><img src="img/checkout-points.jpg" alt="Блок скидок при бронировании: оплата 35 € баллами, итог 170 €" loading="lazy"></div>
+        <figcaption>Участник оплачивает 35 € баллами: итог 205 € → 170 €, и за эту аренду он получит ещё около 852 баллов.</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/klub/</em></div><img src="img/club-invite.jpg" alt="Блок Пригласи друга" loading="lazy"></div>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>avaladrive.rs/ru/kabinet/</em></div><img src="img/cabinet-history.jpg" alt="Мои бронирования и история баллов" loading="lazy"></div>
+        <figcaption>История броней и каждого начисления баллов — прозрачно для клиента.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature flip">
+    <div class="text">
+      <h3><span class="num">11</span>Клуб измерим</h3>
+      <p>Эффект программы видно в цифрах, а не «на ощущениях».</p>
+      <ul class="points">
+        <li><b>На дашборде</b> — участники клуба, доля броней от участников, повторные клиенты, обязательства по баллам в евро.</li>
+        <li><b>Аналитика клуба</b> — баллы начислено / списано / сгорело за месяц, воронка приглашений (клики → регистрации → награды), распределение по статусам, популярные миссии, эффект промокодов.</li>
+        <li><b>Google Analytics и Яндекс Метрика</b> — события бронирования, промокодов, баллов и приглашений. Только после согласия посетителя и без персональных данных.</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/loyalty/member/analytics/</em></div><img src="img/a-loy-analytics.jpg" alt="Аналитика клуба в админке" loading="lazy"></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ЧАСТЬ 3: CMS -->
+<section class="part" id="cms">
+  <div class="wrap">
+    <p class="eyebrow">Часть 3</p>
+    <h2>CMS: сайт и бизнес под контролем менеджера</h2>
+    <p>Всё, что видит клиент, редактируется в админке — без программиста и без деплоя. Тексты — на четырёх языках во вкладках прямо у поля. Админка работает по закрытому адресу и только после входа.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature">
+    <div class="text">
+      <h3><span class="num">12</span>Операции: дашборд и брони</h3>
+      <p>Утро менеджера — один экран: новые заявки, выдачи и возвраты на сегодня и завтра, загрузка парка, выручка за месяц и показатели клуба.</p>
       <div class="statuses">
         <span>Новая</span><span class="arrow">→</span><span>Подтверждена</span><span class="arrow">→</span><span>Выдана</span><span class="arrow">→</span><span>Завершена</span>
       </div>
-      <p style="font-size:14px;color:var(--muted)">а также «Отменена» и «Не явился»</p>
       <ul class="points">
-        <li><b>Действия одной кнопкой</b> — подтвердить, выдать, завершить, отменить. Клиент автоматически получает письмо о смене статуса.</li>
-        <li><b>Назначение автомобиля</b> — в списке только машины этой модели, свободные на даты брони.</li>
-        <li><b>Цена зафиксирована</b> — разбивка сохраняется в момент брони и не меняется, если позже поменять тарифы.</li>
-        <li><b>Заметки менеджера</b>, данные клиента, номер рейса, удобный мессенджер.</li>
+        <li><b>Действия одной кнопкой</b> — подтвердить, выдать, завершить, отменить. Клиент сразу получает письмо.</li>
+        <li><b>Назначение машины</b> — в списке только свободные на даты брони.</li>
+        <li><b>Статус клиента в клубе</b> виден в брони — менеджер знает, кому положен апгрейд.</li>
+        <li><b>Отметка «возврат без замечаний»</b> засчитывается в миссию клиента.</li>
+        <li><b>Цена зафиксирована</b> в момент брони, CSV-экспорт для бухгалтерии.</li>
       </ul>
     </div>
     <div class="shots">
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/booking/booking/</em></div><img src="img/22-admin-bookings.jpg" alt="Список бронирований" loading="lazy"></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/</em></div><img src="img/a-dash.jpg" alt="Дашборд с KPI проката и клуба" loading="lazy"></div>
+        <figcaption>Дашборд: 8 показателей, включая 4 по клубу.</figcaption>
       </figure>
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/booking/booking/1/change/</em></div><img src="img/23-admin-booking.jpg" alt="Карточка брони с кнопками Подтвердить, Выдать, Завершить, Отменить" loading="lazy"></div>
-        <figcaption>Карточка брони: действия в верхней панели, назначение автомобиля.</figcaption>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/booking/booking/</em></div><img src="img/a-bookings.jpg" alt="Список бронирований со статусом клиента" loading="lazy"></div>
       </figure>
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/booking/booking/1/change/</em></div><img src="img/24-admin-booking-2.jpg" alt="Данные поездки и клиента в карточке брони" loading="lazy"></div>
-        <figcaption>Поездка и контакты клиента.</figcaption>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/booking/booking/3/change/</em></div><img src="img/a-booking.jpg" alt="Карточка брони с действиями" loading="lazy"></div>
       </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature flip">
+    <div class="text">
+      <h3><span class="num">13</span>Автопарк, цены и локации</h3>
+      <ul class="points">
+        <li><b>Модели</b> — фото, характеристики, комплектация, публикация и показ на главной одним переключателем. Фото автоматически нарезаются в нескольких размерах.</li>
+        <li><b>Автомобили</b> — госномер, пробег, базовая точка, статус. Доступность считается по реальным машинам.</li>
+        <li><b>Тарифы</b> по длительности и <b>сезоны</b> с коэффициентом — например, лето и новогодние праздники.</li>
+        <li><b>Пакеты защиты и опции</b> — цена в сутки или разово, с потолком.</li>
+        <li><b>Локации</b> — адрес, часы работы, координаты, сборы за выдачу и возврат в другом городе.</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/carmodel/1/change/</em></div><img src="img/a-carmodel-edit.jpg" alt="Редактирование модели с вкладками SR, RU, EN, DE" loading="lazy"></div>
+        <figcaption>Вкладки SR-LATN / RU / EN / DE у каждого переводимого поля.</figcaption>
+      </figure>
+      <div class="grid-2">
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/carmodel/</em></div><img src="img/a-carmodels.jpg" alt="Список моделей" loading="lazy"></div>
+          <figcaption>13 моделей, публикация переключателем.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/vehicle/</em></div><img src="img/a-vehicles.jpg" alt="Список автомобилей" loading="lazy"></div>
+          <figcaption>26 автомобилей с госномерами.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/season/</em></div><img src="img/a-seasons.jpg" alt="Сезоны" loading="lazy"></div>
+          <figcaption>Сезоны и коэффициенты.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/locations/location/1/change/</em></div><img src="img/a-location-edit.jpg" alt="Редактирование локации" loading="lazy"></div>
+          <figcaption>Локация на четырёх языках.</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -418,32 +606,27 @@
 <section>
   <div class="wrap feature">
     <div class="text">
-      <h3><span class="num">11</span>Автопарк и цены</h3>
-      <p>Менеджер сам управляет предложением, без программиста.</p>
+      <h3><span class="num">14</span>Контент и SEO</h3>
       <ul class="points">
-        <li><b>Модели</b> — фото, характеристики, комплектация, публикация и показ на главной одним переключателем.</li>
-        <li><b>Тексты на трёх языках</b> — вкладки SR / RU / EN прямо у каждого поля.</li>
-        <li><b>Автомобили</b> — госномер, пробег, базовая точка, статус. Доступность считается по реальным машинам.</li>
-        <li><b>Тарифы по длительности</b> (1–3, 4–7, 8–14, 15–29, 30+ дней) и <b>сезоны</b> с коэффициентом — лето, Новый год.</li>
-        <li><b>Пакеты защиты, опции, локации</b> со сборами за выдачу.</li>
+        <li><b>Статьи-гиды</b> — заголовок, вступление, текст, обложка, дата публикации, время чтения.</li>
+        <li><b>Страницы</b> — условия аренды, политика конфиденциальности, правила клуба; показ в подвале.</li>
+        <li><b>Вопросы и ответы</b> — темы, порядок, показ на главной.</li>
+        <li><b>Отзывы</b> клиентов для главной.</li>
+        <li><b>SEO-заголовок и описание</b> у моделей, категорий, локаций, страниц и статей на каждом языке. Пусто — подставится шаблон.</li>
+        <li><b>Настройки сайта</b> — бренд, слоган, телефон, email, WhatsApp, Viber, Telegram, адрес, коды Google Search Console и Яндекс.Вебмастера, счётчики аналитики.</li>
       </ul>
     </div>
     <div class="shots">
       <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/carmodel/</em></div><img src="img/25-admin-carmodel.jpg" alt="Список моделей автомобилей с переключателями публикации" loading="lazy"></div>
-      </figure>
-      <figure>
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/carmodel/1/change/</em></div><img src="img/26-admin-carmodel-edit.jpg" alt="Редактирование модели с вкладками языков" loading="lazy"></div>
-        <figcaption>Редактирование модели: вкладки SR-LATN / RU / EN у переводимых полей.</figcaption>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/blog/article/1/change/</em></div><img src="img/a-article-edit.jpg" alt="Редактирование статьи" loading="lazy"></div>
+        <figcaption>Редактор статьи: текст с простой разметкой, вкладки языков.</figcaption>
       </figure>
       <div class="grid-2">
         <figure>
-          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/vehicle/</em></div><img src="img/28-admin-vehicles.jpg" alt="Список автомобилей с госномерами и статусами" loading="lazy"></div>
-          <figcaption>26 автомобилей с госномерами.</figcaption>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/core/faqitem/</em></div><img src="img/a-faq.jpg" alt="Список вопросов и ответов" loading="lazy"></div>
         </figure>
         <figure>
-          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/fleet/season/</em></div><img src="img/27-admin-seasons.jpg" alt="Сезоны с ценовым коэффициентом" loading="lazy"></div>
-          <figcaption>Сезоны и коэффициенты.</figcaption>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/core/sitesettings/</em></div><img src="img/a-settings.jpg" alt="Настройки сайта" loading="lazy"></div>
         </figure>
       </div>
     </div>
@@ -453,33 +636,57 @@
 <section>
   <div class="wrap feature flip">
     <div class="text">
-      <h3><span class="num">12</span>Контент и настройки сайта</h3>
-      <p>Страницы, вопросы и ответы, отзывы, статьи-гиды — всё редактируется в админке на трёх языках, с SEO-заголовками и описаниями.</p>
+      <h3><span class="num">15</span>Управление клубом</h3>
+      <p>Все числа программы меняются в админке — без программиста.</p>
       <ul class="points">
-        <li><b>Настройки сайта</b> — название бренда, слоган, телефон, email, WhatsApp, Viber, Telegram, адрес офиса.</li>
-        <li><b>Аналитика</b> (GA4, Яндекс Метрика) подключается в настройках и включается только после согласия посетителя.</li>
-        <li><b>Пользователи и роли</b> — доступы для менеджеров.</li>
+        <li><b>Настройки лояльности</b> — баллов за 1 €, стоимость балла, минимум и шаг списания, максимальная доля аренды, срок сгорания.</li>
+        <li><b>Уровни статуса</b> — пороги аренд и дней, множитель, скидка, бесплатные опции.</li>
+        <li><b>Миссии</b> — название и описание на четырёх языках, награда, сроки, порядок, включение одним переключателем.</li>
+        <li><b>Промокоды</b> — условия, лимиты, кампания; видно число использований и сумму скидок.</li>
+        <li><b>Участники</b> — статус, баланс, история; ручная корректировка баллов с обязательной причиной (например, компенсация).</li>
+        <li><b>Приглашения</b> — кто кого пригласил и на каком этапе.</li>
       </ul>
     </div>
-    <figure>
-      <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/core/sitesettings/</em></div><img src="img/29-admin-settings.jpg" alt="Настройки сайта: бренд, контакты, мессенджеры" loading="lazy"></div>
-    </figure>
+    <div class="shots">
+      <div class="grid-2">
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/loyalty/loyaltysettings/</em></div><img src="img/a-loy-settings.jpg" alt="Настройки лояльности" loading="lazy"></div>
+          <figcaption>Настройки программы.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/loyalty/tier/</em></div><img src="img/a-tiers.jpg" alt="Уровни статуса" loading="lazy"></div>
+          <figcaption>Уровни статуса.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/loyalty/challenge/</em></div><img src="img/a-challenges.jpg" alt="Список миссий" loading="lazy"></div>
+          <figcaption>11 миссий.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/loyalty/promocode/</em></div><img src="img/a-promos.jpg" alt="Промокоды" loading="lazy"></div>
+          <figcaption>Промокоды и кампании.</figcaption>
+        </figure>
+      </div>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><em>/control-room/loyalty/member/2/change/</em></div><img src="img/a-member-edit.jpg" alt="Карточка участника клуба" loading="lazy"></div>
+        <figcaption>Карточка участника: статус и срок, баланс, код приглашения, согласие на рассылки.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<!-- ЧАСТЬ 3: SEO -->
+<!-- ЧАСТЬ 4: SEO -->
 <section class="part" id="seo">
   <div class="wrap">
-    <p class="eyebrow">Часть 3</p>
-    <h2>SEO: клиенты приходят из поиска</h2>
-    <p>Человек, который ищет «аренда авто аэропорт Белград», должен найти Avala, а не агрегатор с комиссией. SEO заложено в сайт с первого дня, его не придётся «докручивать» после запуска.</p>
+    <p class="eyebrow">Часть 4</p>
+    <h2>SEO-оптимизация с первого дня</h2>
+    <p>Человек, который ищет «аренда авто аэропорт Белград» или «Mietwagen Flughafen Belgrad», должен найти Avala, а не агрегатор с комиссией. SEO заложено в устройство сайта, а не прикручено сверху.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h3><span class="num">13</span>Одна страница — три языка и три поисковых запроса</h3>
-    <p style="color:var(--ink-2);max-width:760px;margin:0">У каждой страницы есть версия на сербском, русском и английском со своим адресом, заголовком и описанием под формулировку, которую люди действительно вводят в поиск. Ниже — как страница аэропорта Белграда может выглядеть в выдаче (тексты взяты с сайта как есть).</p>
+    <h3><span class="num">16</span>Одна страница — четыре языка, четыре поисковых запроса</h3>
+    <p class="intro">У каждой страницы версии на сербском, русском, английском и немецком — со своим адресом, заголовком и описанием под реальные запросы. Так страница аэропорта Белграда может выглядеть в выдаче (тексты взяты с сайта).</p>
     <div class="serp">
       <div class="snippet">
         <div class="q">Запрос<b>rent a car aerodrom Beograd</b></div>
@@ -499,100 +706,86 @@
         <div class="t">Car hire Belgrade Airport (BEG) — 24/7 meet &amp; greet</div>
         <div class="d">Meet &amp; greet in the arrivals hall with a name sign, 24/7. We track your flight.</div>
       </div>
+      <div class="snippet">
+        <div class="q">Запрос<b>Mietwagen Flughafen Belgrad</b></div>
+        <div class="url">avaladrive.rs › de › standorte › flughafen-belgrad</div>
+        <div class="t">Mietwagen Flughafen Belgrad (BEG) — 24/7 Meet &amp; Greet</div>
+        <div class="d">Meet &amp; Greet in der Ankunftshalle mit Namensschild, rund um die Uhr. Wir verfolgen Ihren Flug.</div>
+      </div>
     </div>
-    <p style="font-size:14px;color:var(--muted);margin-top:16px">Это иллюстрация: какой сниппет покажет поисковик и на каком месте окажется сайт, решает он сам.</p>
+    <p class="note">Это иллюстрация: какой сниппет показать и на каком месте, решает поисковик.</p>
 
-    <div class="seo-cols">
+    <div class="cols">
       <div>
         <h3>Страницы под реальный спрос</h3>
         <ul class="points">
-          <li><b>5 страниц точек выдачи</b> — аэропорт Белграда, центр Белграда, Нови-Сад, аэропорт Ниша, доставка. Каждая отвечает на запрос «прокат + город».</li>
-          <li><b>13 страниц автомобилей</b> — «аренда Škoda Octavia в Белграде от 26 €/сутки». Если заголовок не задан вручную, цена в нём обновляется сама при смене тарифа.</li>
+          <li><b>5 точек выдачи</b> — «прокат + город / аэропорт» на каждом языке.</li>
+          <li><b>13 автомобилей</b> — «аренда Škoda Octavia в Белграде от 26 €/сутки»; цена в шаблонном заголовке обновляется сама.</li>
           <li><b>6 категорий</b> — эконом, SUV, премиум, минивэны, электро.</li>
-          <li><b>Гиды</b> — права РФ в Сербии, оплата без российских карт, выезд в Черногорию и Боснию, платные дороги. Это информационные запросы, по которым к сайту приходят ещё до решения об аренде.</li>
-          <li><b>FAQ</b> — ответы на вопросы о документах, депозите, страховке и границах.</li>
+          <li><b>Гиды</b> — информационные запросы, по которым люди приходят ещё до решения об аренде.</li>
+          <li><b>Avala Club</b> — страница клуба и правила программы тоже в индексе.</li>
         </ul>
       </div>
       <div>
         <h3>Удобно для поисковиков</h3>
         <ul class="points">
-          <li><b>Страницы собираются на сервере</b> — роботы Google и Яндекса сразу получают готовый текст, а не пустую страницу, которую надо дорисовать скриптом.</li>
-          <li><b>Адреса на языке посетителя</b> — <code>/sr/vozni-park/</code>, <code>/ru/avtopark/</code>, <code>/en/fleet/</code>.</li>
-          <li><b>Связка языковых версий (hreflang)</b> — поисковик показывает русскоязычному пользователю русскую страницу, сербу — сербскую.</li>
-          <li><b>Канонические адреса</b> — каталог с датами и фильтрами не плодит дубли, вес собирается на одной странице.</li>
-          <li><b>Карта сайта</b> — 105 адресов, у каждого указаны все языковые версии. Новые машины, точки выдачи и статьи попадают в неё автоматически.</li>
-          <li><b>Служебное закрыто от индекса</b> — бронирование, личный кабинет, поиск брони. Админка работает по закрытому адресу и только после входа.</li>
+          <li><b>Страницы собираются на сервере</b> — роботы сразу видят готовый текст.</li>
+          <li><b>Адреса на языке посетителя</b> и связка языковых версий (hreflang).</li>
+          <li><b>Канонические адреса</b> — фильтры и даты не плодят дубли.</li>
+          <li><b>Карта сайта</b> — 148 адресов, у каждого все языковые версии; новые машины, точки и статьи добавляются сами.</li>
+          <li><b>Служебное закрыто от индекса</b> — бронирование, кабинет, поиск брони.</li>
+          <li><b>Превью ссылок</b> в мессенджерах и соцсетях — заголовок, описание, картинка.</li>
         </ul>
       </div>
     </div>
 
-    <h3 style="margin-top:64px">Структурированные данные</h3>
-    <p style="color:var(--ink-2);max-width:760px;margin:0">На страницах есть разметка Schema.org: по ней поисковик понимает, что это прокат авто, где точки выдачи, сколько стоит машина. Она может показываться в выдаче, например хлебными крошками или ценой.</p>
+    <h3 style="margin-top:64px">Структурированные данные Schema.org</h3>
+    <p class="intro">По разметке поисковик понимает, что это прокат авто, где точки выдачи и сколько стоит машина. Часть данных может показываться прямо в выдаче — хлебные крошки, цена.</p>
     <table class="seo">
       <thead><tr><th>Страница</th><th>Что сообщаем поисковику</th></tr></thead>
       <tbody>
-        <tr><td>Главная</td><td>Компания-прокатчик (<code>AutoRental</code>): контакты, регион работы; вопросы и ответы (<code>FAQPage</code>)</td></tr>
-        <tr><td>Точка выдачи</td><td>Отдельный пункт проката: адрес, координаты на карте, часы работы</td></tr>
-        <tr><td>Автомобиль</td><td>Модель, марка и предложение с ценой за сутки в евро (<code>Product</code> + <code>Car</code> + <code>Offer</code>)</td></tr>
+        <tr><td>Главная</td><td>Компания-прокатчик (<code>AutoRental</code>): контакты, регион; вопросы и ответы (<code>FAQPage</code>)</td></tr>
+        <tr><td>Точка выдачи</td><td>Пункт проката: адрес, координаты, часы работы</td></tr>
+        <tr><td>Автомобиль</td><td>Модель, марка, цена за сутки в евро (<code>Product</code> + <code>Car</code> + <code>Offer</code>)</td></tr>
         <tr><td>Гид</td><td>Статья: автор, дата публикации (<code>Article</code>)</td></tr>
-        <tr><td>FAQ</td><td>Список вопросов и ответов (<code>FAQPage</code>)</td></tr>
-        <tr><td>Все внутренние</td><td>Хлебные крошки — путь до страницы (<code>BreadcrumbList</code>)</td></tr>
+        <tr><td>Все внутренние</td><td>Хлебные крошки (<code>BreadcrumbList</code>)</td></tr>
       </tbody>
     </table>
 
-    <div class="seo-cols">
-      <div>
-        <h3>SEO под контролем менеджера</h3>
-        <ul class="points">
-          <li><b>SEO-заголовок и описание</b> у автомобилей, категорий, точек выдачи, страниц и статей — на каждом из трёх языков.</li>
-          <li><b>Если поле пустое</b>, текст собирается по шаблону: «Аренда {модель} в Белграде от {цена} €/сутки — Avala Drive». Ни одна страница не останется без заголовка.</li>
-          <li><b>Превью для мессенджеров и соцсетей</b> — ссылка в Telegram, WhatsApp или Facebook показывается с заголовком, описанием и картинкой.</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Скорость — тоже фактор ранжирования</h3>
-        <ul class="points">
-          <li><b>Лёгкие страницы</b> — около 30 КБ JavaScript.</li>
-          <li><b>Фото в нескольких размерах</b> — телефон скачивает маленькую версию, большой монитор — крупную; картинки ниже первого экрана грузятся по мере прокрутки.</li>
-          <li><b>Свои шрифты</b> без Google Fonts, с предзагрузкой — текст виден сразу.</li>
-          <li><b>Аналитика</b> (GA4, Яндекс Метрика) подключается только после согласия посетителя и не тормозит первую загрузку.</li>
-        </ul>
-      </div>
-    </div>
-
     <div class="launch">
-      <h3 style="margin:0">Что нужно сделать при запуске</h3>
+      <h3 style="margin:0">При запуске</h3>
       <ol>
-        <li>Подключить домен и указать его в настройках сервера — от него строятся все ссылки, карта сайта и канонические адреса.</li>
-        <li>Подтвердить сайт в Google Search Console и Яндекс.Вебмастере: коды вставляются в «Настройки сайта» в админке, программист не нужен.</li>
-        <li>Отправить карту сайта <code>/sitemap.xml</code> в обе панели.</li>
-        <li>Заменить демо-тексты (отзывы, адреса, юридические страницы) на настоящие и проверить SEO-заголовки ключевых страниц.</li>
-        <li>Регулярно публиковать гиды — это самый дешёвый источник бесплатного трафика.</li>
+        <li>Подключить домен — от него строятся ссылки, карта сайта и канонические адреса.</li>
+        <li>Подтвердить сайт в Google Search Console и Яндекс.Вебмастере — коды вставляются в «Настройки сайта».</li>
+        <li>Отправить <code>/sitemap.xml</code> в обе панели.</li>
+        <li>Заменить демо-тексты на настоящие и проверить SEO-заголовки ключевых страниц.</li>
+        <li>Регулярно публиковать гиды — самый дешёвый источник бесплатного трафика.</li>
       </ol>
     </div>
   </div>
 </section>
 
-<section id="price">
+<!-- КАЧЕСТВО -->
+<section id="tech">
   <div class="wrap">
-    <h2>Честная цена «под ключ»</h2>
-    <p style="color:var(--ink-2);max-width:760px;margin:0">Главное отличие от конкурентов — никаких доплат на стойке. Клиент видит итог, который заплатит при получении. Цена считается автоматически:</p>
+    <h2>Цена, качество и надёжность</h2>
+    <p class="intro">Цена считается автоматически и одинаково везде — в каталоге, карточке, брони и письме:</p>
     <div class="price">
-      <div><small>Аренда</small><b>Тариф × сезон</b><p>Ставка зависит от длительности, сезонный коэффициент — для каждого дня отдельно</p></div>
-      <div><small>Защита</small><b>+ пакет в сутки</b><p>Базовая включена, полная — без франшизы</p></div>
-      <div><small>Опции</small><b>+ в сутки или разово</b><p>С ограничением максимальной суммы</p></div>
-      <div><small>Сборы</small><b>+ аэропорт, доставка</b><p>Возврат в другом городе, выдача в нерабочее время</p></div>
-      <div><small>Итог</small><b>Одна сумма</b><p>Фиксируется в брони, оплата наличными или картой при выдаче</p></div>
+      <div><small>Аренда</small><b>Тариф × сезон</b><p>Ставка по длительности, сезон — для каждого дня</p></div>
+      <div><small>Защита и опции</small><b>+ в сутки или разово</b><p>С потолком; бесплатные — по статусу клуба</p></div>
+      <div><small>Сборы</small><b>+ аэропорт, доставка</b><p>Возврат в другом городе, нерабочее время</p></div>
+      <div><small>Скидки</small><b>− статус, промокод, баллы</b><p>Отдельными строками, аренда не уходит ниже 0</p></div>
+      <div><small>Итог</small><b>Одна сумма</b><p>Фиксируется в брони, оплата при выдаче</p></div>
     </div>
-    <p style="font-size:14px;color:var(--muted);margin-top:16px">Сутки — это 24 часа с льготным периодом 59 минут: опоздание на полчаса не превращается в лишний день.</p>
+    <p class="note">Сутки — это 24 часа с льготными 59 минутами: опоздание на полчаса не превращается в лишний день.</p>
 
     <div class="cards">
-      <div class="card"><h3>Находится в поиске</h3><p>Страницы под каждый город и аэропорт на трёх языках, карта сайта, разметка для поисковиков — подробно в <a href="#seo">разделе SEO</a>.</p></div>
-      <div class="card"><h3>Быстро открывается</h3><p>Около 30 КБ JavaScript вместо 150+ КБ у типичных SPA, адаптивные изображения, свои шрифты без внешних сервисов.</p></div>
-      <div class="card"><h3>Доступен всем</h3><p>Стандарт WCAG 2.2 AA: контрастность, навигация с клавиатуры, крупные зоны нажатия на телефоне.</p></div>
-      <div class="card"><h3>Защищён</h3><p>HTTPS, строгие заголовки безопасности, хранение паролей по Argon2, ограничение попыток входа, защищённые ссылки на бронь.</p></div>
-      <div class="card"><h3>Без двойных броней</h3><p>Если двое бронируют последнюю машину одновременно, система пропустит только одного. Между арендами учитывается время на подготовку авто.</p></div>
-      <div class="card"><h3>Проверен тестами</h3><p>Автотесты покрывают расчёт цены, доступность, сквозное бронирование, письма, переводы и все страницы админки.</p></div>
+      <div class="card"><h3>Быстро открывается</h3><p>Около 30 КБ JavaScript вместо 150+ КБ у типичных одностраничных приложений. Фото в нескольких размерах, свои шрифты без внешних сервисов.</p></div>
+      <div class="card"><h3>Без двойных броней</h3><p>Если двое бронируют последнюю машину одновременно, пройдёт только один. Лимит промокода и баланс баллов тоже защищены от гонки. Между арендами — время на подготовку авто.</p></div>
+      <div class="card"><h3>Защищён</h3><p>HTTPS, строгие заголовки безопасности, пароли по Argon2, ограничение попыток входа, защищённые ссылки на бронь, закрытый адрес админки.</p></div>
+      <div class="card"><h3>Доступен всем</h3><p>Стандарт WCAG 2.2 AA: контраст, управление с клавиатуры, крупные зоны нажатия на телефоне.</p></div>
+      <div class="card"><h3>Бережёт данные</h3><p>Аналитика — только после согласия, без персональных данных в событиях. Отдельное согласие на рассылки. Никаких автоматических отказов по данным клуба.</p></div>
+      <div class="card"><h3>Проверен тестами</h3><p>125 автотестов: расчёт цены, доступность, бронирование, письма, переводы, баллы, статусы, миссии, промокоды, приглашения и все страницы админки.</p></div>
     </div>
   </div>
 </section>
@@ -600,22 +793,22 @@
 <section id="next">
   <div class="wrap">
     <h2>Что можно добавить дальше</h2>
-    <p style="color:var(--ink-2);max-width:760px;margin:0">Текущая версия закрывает полный путь «поиск → бронь → подтверждение → выдача». Следующие шаги на выбор:</p>
+    <p class="intro">Текущая версия закрывает путь «поиск → бронь → выдача → возврат → баллы → повторная бронь». Следующие шаги на выбор:</p>
     <div class="next">
+      <div>Штампы направлений: Златибор, Тара, Голубац — по QR-коду у партнёров, карта Сербии</div>
+      <div>Письма клуба: начисление баллов, новый статус, день рождения</div>
+      <div>Партнёры клуба: отели Златибора и Копаоника, авиакомпании</div>
+      <div>Подарок статуса другу и перенос статуса из других программ</div>
       <div>Онлайн-оплата и блокировка депозита на карте</div>
-      <div>Промокоды и программа лояльности</div>
-      <div>Динамические цены по спросу</div>
-      <div>Договор аренды в PDF</div>
-      <div>Календарь загрузки парка в админке</div>
-      <div>Сербская кириллица и показ цен в RSD/RUB</div>
-      <div>Телематика автомобилей</div>
+      <div>Договор аренды в PDF и календарь загрузки парка</div>
+      <div>Корпоративные аккаунты и подписка</div>
       <div>Мобильное приложение</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">Avala Drive · Скриншоты сняты на демо-данных: отзывы, адреса и юридические тексты — заглушки, их заменят перед запуском.</div>
+  <div class="wrap">Avala Drive · Скриншоты сняты на демо-данных: отзывы, адреса, юридические тексты и правила клуба — черновики, их заменят перед запуском.</div>
 </footer>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Скриншот крупно"><img alt=""></div>
